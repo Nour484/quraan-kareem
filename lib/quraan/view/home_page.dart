@@ -18,7 +18,22 @@ class HomePage extends StatelessWidget {
               width: MediaQuery.sizeOf(context).width * 0.9,
               height: MediaQuery.sizeOf(context).height * 0.22,
               decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(20)),
+                gradient: LinearGradient(
+                    begin: Alignment.bottomLeft,
+                    end: Alignment.topRight,
+                    stops: [
+                      0.1,
+                      0.4,
+                      1
+                    ],
+                    colors: [
+                      Colors.black,
+                      Color.fromARGB(255, 91, 89, 163),
+                      Color.fromARGB(255, 52, 10, 24),
+                    ]),
+                //    color: Colors.green,
+                borderRadius: BorderRadius.circular(20),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
