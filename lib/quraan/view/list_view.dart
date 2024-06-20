@@ -8,7 +8,8 @@ import 'package:quraan_kareem/quraan/view/details_view.dart';
 class SurahListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold( 
+      
       appBar: AppBar(
         title: Text('Quran Surahs'),
       ),
@@ -17,11 +18,13 @@ class SurahListScreen extends StatelessWidget {
           if (state is SurahListLoading) {
             return Center(child: CircularProgressIndicator());
           } else if (state is SurahListLoaded) {
-            return ListView.builder(
+            return ListView.builder( 
+              
               itemCount: state.surahs.length,
               itemBuilder: (context, index) {
                 final surah = state.surahs[index];
-                return ListTile(
+                return ListTile( 
+                  
                   title: Text(surah.name),
                   subtitle: Text(surah.englishName),
                   onTap: () {
