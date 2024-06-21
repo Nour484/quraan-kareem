@@ -17,13 +17,18 @@ Map<int, List<Ayah>> groupAyahsByPage(List<Ayah> ayahs) {
 }
 
 class SurahDetailsScreen extends StatelessWidget {
-  const SurahDetailsScreen({super.key, required this.surahId});
+  const SurahDetailsScreen(
+      {super.key, required this.surahId, required this.identifier});
   final int surahId;
+  final String identifier;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SurahDetailsBloc()..add(FetchSurahDetails(surahId)),
+      create: (context) => SurahDetailsBloc()
+        ..add(FetchSurahDetails(
+          surahId, identifier
+        )),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Surah Details'),

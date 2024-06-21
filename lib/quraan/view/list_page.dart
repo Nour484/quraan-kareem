@@ -5,13 +5,15 @@ import 'package:quraan_kareem/quraan/bloc/Surah%20list%20Bloc/surah_event.dart';
 import 'package:quraan_kareem/quraan/view/list_view.dart';
 
 class ListPage extends StatelessWidget {
-  const ListPage({super.key});
+  final String editionType;
+
+  ListPage({required this.editionType, super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SurahListBloc()..add(FetchSurahList()),
-      child: SurahListScreen(),
+      child: SurahListScreen(editionType: editionType),
     );
   }
 }

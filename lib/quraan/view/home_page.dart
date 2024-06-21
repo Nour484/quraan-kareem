@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quraan_kareem/quraan/view/edition_page.dart';
+import 'package:quraan_kareem/quraan/view/list_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -31,9 +32,9 @@ class HomePage extends StatelessWidget {
                         1
                       ],
                       colors: [
-                        Colors.teal.shade100,
-                        Colors.teal.shade200,
-                        Colors.teal.shade100
+                        Colors.blueGrey.shade100,
+                        Colors.blueGrey.shade200,
+                        Colors.blueGrey.shade100
                       ]),
                   //    color: Colors.green,
                   borderRadius: BorderRadius.circular(20),
@@ -46,25 +47,24 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Categories(
                           hight: hightSmall,
-                          image: "assets/images/quraan.png",
+                          image: "assets/images/tafseer.png",
                           type: "tafsir"),
                       const SizedBox(
                         height: 20,
                       ),
                       Categories(
-                          hight: hightLarge,
-                          image: "assets/images/salah.png",
+                          hight: hightLarge + 30,
+                          image: "assets/images/translate.png",
                           type: "translation"),
                       const SizedBox(
                         height: 20,
                       ),
                       Categories(
                           hight: hightSmall,
-                          image: "assets/images/quraan.png",
+                          image: "assets/images/1.png",
                           type: "versebyverse"),
                     ],
                   ),
@@ -79,12 +79,22 @@ class HomePage extends StatelessWidget {
                       ),
                       Categories(
                           hight: hightSmall,
-                          image: "assets/images/hosnElmuslim.png",
+                          image: "assets/images/quraan_audio.png",
+                          type: "quran"),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      PrayTimeWidget(
+                          hight: hightLarge,
+                          image: "assets/images/salah.png",
                           type: "quran"),
                     ],
                   )
                 ],
-              )
+              ),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),
@@ -101,7 +111,6 @@ class Categories extends StatelessWidget {
     super.key,
   });
   final double hight;
-
   final String image;
   final String type;
 
@@ -117,13 +126,13 @@ class Categories extends StatelessWidget {
               end: Alignment.topRight,
               stops: const [
                 0.1,
-                0.4,
+                0.5,
                 1
               ],
               colors: [
-                Colors.green.shade100,
-                Colors.greenAccent.shade200,
-                Colors.teal.shade100
+                Colors.brown.shade100,
+                Colors.brown.shade50,
+                Colors.brown.shade100
               ]),
           //    color: Colors.green,
           borderRadius: BorderRadius.circular(20),
@@ -133,8 +142,53 @@ class Categories extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-              builder: (context) => EditionPage(editionType: type)),
+          MaterialPageRoute(builder: (context) => ListPage(editionType: type)),
+        );
+      },
+    );
+  }
+}
+
+class PrayTimeWidget extends StatelessWidget {
+  const PrayTimeWidget({
+    required this.image,
+    required this.type,
+    required this.hight,
+    super.key,
+  });
+  final double hight;
+  final String image;
+  final String type;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Container(
+        width: MediaQuery.sizeOf(context).width * 0.4,
+        height: hight,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.bottomLeft,
+              end: Alignment.topRight,
+              stops: const [
+                0.1,
+                0.5,
+                1
+              ],
+              colors: [
+                Colors.brown.shade100,
+                Colors.brown.shade50,
+                Colors.brown.shade100
+              ]),
+          //    color: Colors.green,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Image.asset(image),
+      ),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ListPage(editionType: type)),
         );
       },
     );

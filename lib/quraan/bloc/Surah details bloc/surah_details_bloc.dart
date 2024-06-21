@@ -15,8 +15,8 @@ class SurahDetailsBloc extends Bloc<SurahDetailsEvent, SurahDetailsState> {
       FetchSurahDetails event, Emitter<SurahDetailsState> emit) async {
     emit(SurahDetailsLoading());
     try {
-      final response = await http
-          .get(Uri.parse('http://api.alquran.cloud/v1/surah/${event.surahId}'));
+      final response = await http.get(Uri.parse(
+          'http://api.alquran.cloud/v1/surah/${event.surahId}/${event.identifier}'));
       if (response.statusCode == 200) {
         final surahDetailsJson = json.decode(response.body)['data'];
         final surahDetails = SurahDetails.fromJson(surahDetailsJson);

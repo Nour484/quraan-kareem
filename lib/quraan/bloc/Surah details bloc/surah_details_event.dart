@@ -6,10 +6,11 @@ abstract class SurahDetailsEvent extends Equatable {
 }
 
 class FetchSurahDetails extends SurahDetailsEvent {
-  final int surahId;
+  final int surahId; 
+   final String  identifier;
 
-  FetchSurahDetails(this.surahId);
+  FetchSurahDetails(this.surahId , this .identifier);
 
   @override
-  List<Object> get props => [surahId];
+  List<Object> get props => [surahId , identifier];
 }

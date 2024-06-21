@@ -12,12 +12,12 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Quran App', home: HomePage()
-
-        // BlocProvider(
-        //   create: (context) => SurahListBloc()..add(FetchSurahList()),
-        //   child: SurahListScreen(),
-        // ),
-        );
+    return MaterialApp(
+        theme: ThemeData(
+          useMaterial3: true, // Enable Material 3
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        ),
+        title: 'Quran App',
+        home: HomePage());
   }
 }

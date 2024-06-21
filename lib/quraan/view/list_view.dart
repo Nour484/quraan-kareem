@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Surah%20list%20Bloc/surah_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Surah%20list%20Bloc/surahs_state.dart';
-import 'package:quraan_kareem/quraan/view/details_view.dart';
+import 'package:quraan_kareem/quraan/view/edition_page.dart';
 
 class SurahListScreen extends StatelessWidget {
+  String editionType;
+  SurahListScreen({required this.editionType, super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quran Surahs'),
+        title: Text(editionType),
       ),
       body: BlocBuilder<SurahListBloc, SurahListState>(
         builder: (context, state) {
@@ -25,10 +28,6 @@ class SurahListScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ListTile(
-                      // trailing: IconButton(
-                      //     onPressed: () {}, icon: Icon(Icons.translate)),
-                      leading: IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.translate)),
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -40,8 +39,10 @@ class SurahListScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                SurahDetailsScreen(surahId: surah.number),
+                            builder: (context) => EditionPage(
+                              surahNumber: surah.number,
+                              editionType: editionType,
+                            ),
                           ),
                         );
                       },

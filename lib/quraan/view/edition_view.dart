@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Edition%20Bloc/edition_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Edition%20Bloc/edition_state.dart';
+import 'package:quraan_kareem/quraan/view/details_view.dart';
 
 class EditionView extends StatelessWidget {
   final String title;
-  const EditionView({required this.title, super.key});
+  final int surhNumber;
+  const EditionView({required this.title, required this.surhNumber, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +43,15 @@ class EditionView extends StatelessWidget {
                         ],
                       ),
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) =>
-                        //         SurahDetailsScreen(surahId: edition.format),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SurahDetailsScreen(
+                              surahId: surhNumber,
+                              identifier: edition.identifier,
+                            ),
+                          ),
+                        );
                       },
                     ),
                     const Divider()
