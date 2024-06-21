@@ -10,17 +10,6 @@ class SurahDetailsBloc extends Bloc<SurahDetailsEvent, SurahDetailsState> {
   SurahDetailsBloc() : super(SurahDetailsInitial()) {
     on<FetchSurahDetails>(_onFetchSurahDetails);
   }
-  
-
-  Future<Surah> fetchSurahDetails(int surahId) async {
-  final response = await http.get(Uri.parse('http://api.alquran.cloud/v1/surah/$surahId'));
-
-  if (response.statusCode == 200) {
-    return Surah.fromJson(json.decode(response.body)['data']);
-  } else {
-    throw Exception('Failed to load surah details');
-  }
-}
 
   void _onFetchSurahDetails(
       FetchSurahDetails event, Emitter<SurahDetailsState> emit) async {

@@ -5,25 +5,6 @@ import 'package:quraan_kareem/quraan/bloc/Surah%20details%20bloc/surah_details_e
 import 'package:quraan_kareem/quraan/bloc/Surah%20details%20bloc/surah_details_state.dart';
 import 'package:quraan_kareem/quraan/model/ayahs.model.dart';
 
-// List<List<Ayah>> paginateAyahs(List<Ayah> ayahs, int ayahsPerPage) {
-//   List<List<Ayah>> pages = [];
-//   for (var i = 0; i < ayahs.length; i += ayahsPerPage) {
-//     pages.add(ayahs.sublist(
-//         i, i + ayahsPerPage > ayahs.length ? ayahs.length : i + ayahsPerPage));
-//   }
-//   return pages;
-// }
-
-// Map<int, List<Ayah>> groupAyahsByPage(List<Ayah> ayahs) {
-//   Map<int, List<Ayah>> pages = {};
-//   for (var ayah in ayahs) {
-//     if (!pages.containsKey(ayah.page)) {
-//       pages[ayah.page] = [];
-//     }
-//     pages[ayah.page]!.add(ayah);
-//   }
-//   return pages;
-// }
 Map<int, List<Ayah>> groupAyahsByPage(List<Ayah> ayahs) {
   Map<int, List<Ayah>> pages = {};
   for (var ayah in ayahs) {
@@ -36,9 +17,8 @@ Map<int, List<Ayah>> groupAyahsByPage(List<Ayah> ayahs) {
 }
 
 class SurahDetailsScreen extends StatelessWidget {
+  const SurahDetailsScreen({super.key, required this.surahId});
   final int surahId;
-
-  SurahDetailsScreen({required this.surahId});
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +26,12 @@ class SurahDetailsScreen extends StatelessWidget {
       create: (context) => SurahDetailsBloc()..add(FetchSurahDetails(surahId)),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Surah Details'),
+          title: const Text('Surah Details'),
         ),
         body: BlocBuilder<SurahDetailsBloc, SurahDetailsState>(
           builder: (context, state) {
             if (state is SurahDetailsLoading) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is SurahDetailsLoaded) {
               final surahDetails = state.surahDetails;
               final pages = groupAyahsByPage(surahDetails.ayahs);
