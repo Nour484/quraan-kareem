@@ -1,9 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:quraan_kareem/quraan/bloc/Next%20Prayer%20Time/time_bloc.dart';
+import 'package:quraan_kareem/quraan/view/adhan_page.dart';
+import 'package:quraan_kareem/quraan/view/b.dart';
 import 'package:quraan_kareem/quraan/view/edition_page.dart';
 import 'package:quraan_kareem/quraan/view/list_page.dart';
 
-class HomePage extends StatelessWidget {
+String getNextPrayer(Map<String, DateTime> prayerTimes, DateTime now) {
+  for (var prayer in prayerTimes.entries) {
+    if (prayer.value.isAfter(now)) {
+      return prayer.key;
+    }
+  }
+  return 'Next day Fajr'; // Example fallback if all times are past 'now'
+}
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late Future<PrayerTimes> _prayerTimes;
+
+  @override
+  void initState() {
+    super.initState();
+    _prayerTimes = fetchPrayerTimes();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +63,37 @@ class HomePage extends StatelessWidget {
                       ]),
                   //    color: Colors.green,
                   borderRadius: BorderRadius.circular(20),
+                ),
+                child: FutureBuilder<PrayerTimes>(
+                  future: _prayerTimes,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else if (snapshot.hasData) {
+                      PrayerTimes prayerTimes = snapshot.data!;
+                      String nextPrayer =
+                          getNextPrayer(prayerTimes.times, DateTime.now());
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Next Prayer: $nextPrayer',
+                              style: const TextStyle(fontSize: 24)),
+                          const SizedBox(height: 20),
+
+                          // Example of displaying all prayer times
+                          // for (var entry in prayerTimes.times.entries)
+                          //   ListTile(
+                          //     title: Text(
+                          //         '${entry.key}: ${DateFormat.Hm().format(entry.value)}'),
+                          //   ),
+                        ],
+                      );
+                    } else {
+                      return Text('Press the button to fetch prayer times');
+                    }
+                  },
                 ),
               ),
               const SizedBox(
@@ -188,7 +244,7 @@ class PrayTimeWidget extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ListPage(editionType: type)),
+          MaterialPageRoute(builder: (context) => AddnScreen()),
         );
       },
     );

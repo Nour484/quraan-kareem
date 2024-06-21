@@ -40,7 +40,8 @@ dependencies:
   flutter_bloc: ^8.1.6
   http: ^1.2.1
   equatable: ^2.0.5
-  bloc_concurrency: ^0.2.5
+  bloc_concurrency: ^0.2.5 
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +87,9 @@ flutter:
     - family: Amiri Quran
       fonts:
         - asset: assets/fonts/AmiriQuran-Regular.ttf
+    - family: Gulzar
+      fonts:
+        - asset: assets/fonts/Gulzar-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
