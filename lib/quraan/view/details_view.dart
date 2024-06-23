@@ -25,79 +25,100 @@ class SurahDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SurahDetailsBloc()
-        ..add(FetchSurahDetails(
-          surahId, identifier
-        )),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Surah Details'),
-        ),
-        body: BlocBuilder<SurahDetailsBloc, SurahDetailsState>(
-          builder: (context, state) {
-            if (state is SurahDetailsLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is SurahDetailsLoaded) {
-              final surahDetails = state.surahDetails;
-              final pages = groupAyahsByPage(surahDetails.ayahs);
-              final pageNumbers = pages.keys.toList()..sort();
+        create: (context) =>
+            SurahDetailsBloc()..add(FetchSurahDetails(surahId, identifier)),
+        child: Scaffold(
+          extendBody: true,
+          // appBar: AppBar(
+          //   title: const Text('Surah Details'),
+          // ),
+          body: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage("assets/images/bg.jpg"))),
+            child: BlocBuilder<SurahDetailsBloc, SurahDetailsState>(
+              builder: (context, state) {
+                if (state is SurahDetailsLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is SurahDetailsLoaded) {
+                  final surahDetails = state.surahDetails;
+                  final pages = groupAyahsByPage(surahDetails.ayahs);
+                  final pageNumbers = pages.keys.toList()..sort();
 
-              return PageView.builder(
-                itemCount: pageNumbers.length,
-                itemBuilder: (context, index) {
-                  final pageNumber = pageNumbers[index];
-                  final ayahs = pages[pageNumber]!;
-                  // String page = ayah.numberInSurah
+                  return PageView.builder(
+                    scrollDirection: Axis.horizontal,
+                    reverse: true,
+                    itemCount: pageNumbers.length,
+                    itemBuilder: (context, index) {
+                      final pageNumber = pageNumbers[index];
+                      final ayahs = pages[pageNumber]!;
+                      // String page = ayah.numberInSurah
 
-                  return Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child:
-                        // Column(
-                        //   crossAxisAlignment: CrossAxisAlignment.stretch,
-                        //   children: [
-                        //     Expanded(
-                        //       child:
-                        SingleChildScrollView(
-                      child: RichText(
-                        textAlign: TextAlign.right,
-                        text: TextSpan(
-                          children: ayahs.map((ayah) {
-                            return TextSpan(
-                              text: '(${ayah.numberInSurah}) ${ayah.text}',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'Amiri Quran',
-                                color: Colors.black,
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                            right: 50.0, left: 50, top: 80),
+                        child: Stack(children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Center(
+                                    child: Container(
+                                      // width: MediaQuery.sizeOf(context).width,
+                                      // height: MediaQuery.sizeOf(context).height,
+                                      child: RichText(
+                                        textAlign: TextAlign.justify,
+                                        textDirection: TextDirection.rtl,
+                                        // textAlign: TextAlign.right,
+                                        text: TextSpan(
+                                          children: ayahs.map((ayah) {
+                                            return TextSpan(
+                                              text:
+                                                  '${ayah.text}(${ayah.numberInSurah}) ',
+                                              style: TextStyle(
+                                                fontSize:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.049,
+                                                //  fontFamily: 'Amiri Quran',
+                                                color: Colors.black,
+                                              ),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                    //),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 8.0),
-                    //   child: Center(
-                    //     child: Text(
-                    //       'Page $pageNumber',
-                    //       style: TextStyle(
-                    //           fontSize: 20, fontWeight: FontWeight.bold),
-                    //     ),
-                    //   ),
-                    // ),
-                    // ],
-                    //  ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Center(
+                                  child: Text(
+                                    'Page $pageNumber',
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ]),
+                      );
+                    },
                   );
-                },
-              );
-            } else if (state is SurahDetailsError) {
-              return Center(child: Text(state.message));
-            } else {
-              return Center(child: Text('No data'));
-            }
-          },
-        ),
-      ),
-    );
+                } else if (state is SurahDetailsError) {
+                  return Center(child: Text(state.message));
+                } else {
+                  return Center(child: Text('No data'));
+                }
+              },
+            ),
+          ),
+        ));
   }
 }

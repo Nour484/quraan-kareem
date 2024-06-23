@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:quraan_kareem/quraan/model/ayahs.model.dart';
+import 'package:quraan_kareem/quraan/model/edition_model.dart';
 
 class SurahDetails extends Equatable {
   final int number;
@@ -8,8 +9,10 @@ class SurahDetails extends Equatable {
   final String revelationType;
   final int numberOfAyahs;
   final List<Ayah> ayahs;
+  final Edition edition;
 
   const SurahDetails({
+    required this.edition,
     required this.ayahs,
     required this.number,
     required this.name,
@@ -19,13 +22,21 @@ class SurahDetails extends Equatable {
   });
 
   @override
-  List<Object> get props =>
-      [number, name, englishName, revelationType, numberOfAyahs, ayahs];
+  List<Object> get props => [
+        number,
+        name,
+        englishName,
+        revelationType,
+        numberOfAyahs,
+        ayahs,
+        edition
+      ];
 
   factory SurahDetails.fromJson(Map<String, dynamic> json) {
     var ayahsJson = json['ayahs'] as List;
     List<Ayah> ayahList = ayahsJson.map((i) => Ayah.fromJson(i)).toList();
     return SurahDetails(
+      edition: Edition.fromJson(json['edition']),
       ayahs: ayahList,
       number: json['number'],
       name: json['name'],

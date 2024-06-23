@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Edition%20Bloc/edition_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Edition%20Bloc/edition_state.dart';
 import 'package:quraan_kareem/quraan/view/details_view.dart';
+import 'package:quraan_kareem/quraan/view/list_page.dart';
 
 class EditionView extends StatelessWidget {
   final String title;
@@ -14,7 +16,14 @@ class EditionView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(title),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 30,
+            fontFamily: 'Amiri Quran',
+            color: Colors.black,
+          ),
+        ),
       ),
       body: BlocBuilder<EditionBloc, EditionState>(
         builder: (context, state) {
@@ -33,24 +42,51 @@ class EditionView extends StatelessWidget {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(edition.name),
+                          Container(
+                            width: MediaQuery.sizeOf(context).width * 0.9,
+                            child: Text(
+                              textAlign: TextAlign.justify,
+                              textDirection: TextDirection.rtl,
+                              overflow: TextOverflow.ellipsis,
+                              edition.name,
+                              style: const TextStyle(
+                                fontSize: 17,
+                                fontFamily: 'Amiri Quran',
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
-                      subtitle: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(edition.englishName),
-                        ],
-                      ),
+                      // subtitle: Row(
+                      //   mainAxisAlignment: MainAxisAlignment.end,
+                      //   children: [
+                      //     Text(
+                      //       overflow: TextOverflow.ellipsis,
+                      //       //overflow: TextOverflow.clip,
+                      //       edition.englishName,
+                      //       style: const TextStyle(
+                      //         //overflow: TextOverflow.clip,
+                      //         //fontSize: 30,
+                      //         //fontFamily: 'Amiri Quran',
+                      //         color: Colors.black,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SurahDetailsScreen(
-                              surahId: surhNumber,
-                              identifier: edition.identifier,
-                            ),
-                          ),
+                              builder: (context) => ListPage(
+                                  editionType: edition.identifier,
+                                  typeInArabic: "typeInArabic")
+
+                              // SurahDetailsScreen(
+                              //   surahId: surhNumber,
+                              //   identifier: edition.identifier,
+                              // ),
+                              ),
                         );
                       },
                     ),

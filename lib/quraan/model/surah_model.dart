@@ -1,14 +1,15 @@
 // lib/models/surah.dart
 import 'package:equatable/equatable.dart';
 
+
 class Surah extends Equatable {
   final int number;
   final String name;
   final String englishName;
 
   const Surah({
-    required this.number,
     required this.name,
+    required this.number,
     required this.englishName,
   });
 

@@ -26,6 +26,7 @@ class EditionBloc extends Bloc<EditionEvent, EditionState> {
       }
     } catch (e) {
       emit(EditionError(e.toString()));
+      print('Error: $e');
     }
   }
 }
