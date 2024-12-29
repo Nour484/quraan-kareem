@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quraan_kareem/quraan/ex.dart';
 import 'quraan/view/home_page.dart';
 
 void main() {
@@ -14,6 +15,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
         title: 'Quran App',
-        home: HomePage());
+        home: Ex());
   }
 }

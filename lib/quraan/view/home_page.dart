@@ -71,31 +71,31 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    children: [
-                      Categories(
-                          hight: hightSmall,
-                          image: "assets/images/tafseer.png",
-                          type: "tafsir",
-                          typeInArabic: "التفسير"),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Categories(
-                          hight: hightLarge + 30,
-                          image: "assets/images/translate.png",
-                          type: "translation",
-                          typeInArabic: "الترجمة"),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Categories(
-                          hight: hightSmall,
-                          image: "assets/images/quraan_audio.png",
-                          type: "versebyverse",
-                          typeInArabic: "القراء"),
-                    ],
-                  ),
+                  // Column(
+                  //   children: [
+                  //     // Categories(
+                  //     //     hight: hightSmall,
+                  //     //     image: "assets/images/tafseer.png",
+                  //     //     type: "tafsir",
+                  //     //     typeInArabic: "التفسير"),
+                  //     // const SizedBox(
+                  //     //   height: 20,
+                  //     // ),
+                  //     // Categories(
+                  //     //     hight: hightLarge + 30,
+                  //     //     image: "assets/images/translate.png",
+                  //     //     type: "translation",
+                  //     //     typeInArabic: "الترجمة"),
+                  //     // const SizedBox(
+                  //     //   height: 20,
+                  //     // ),
+                  //     // Categories(
+                  //     //     hight: hightSmall,
+                  //     //     image: "assets/images/quraan_audio.png",
+                  //     //     type: "versebyverse",
+                  //     //     typeInArabic: "القراء"),
+                  //   ],
+                  // ),
                   Column(
                     children: [
                       // Categories(
@@ -107,15 +107,15 @@ class HomePage extends StatelessWidget {
                       // const SizedBox(
                       //   height: 20,
                       // ),
-                      Categories(
-                        hight: hightSmall,
-                        image: "assets/images/1.png",
-                        type: "quran",
-                        typeInArabic: " القرآن الكريم",
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      // Categories(
+                      //   hight: hightSmall,
+                      //   image: "assets/images/1.png",
+                      //   type: "quran",
+                      //   typeInArabic: " القرآن الكريم",
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
                       PrayTimeWidget(
                           hight: hightLarge,
                           image: "assets/images/translate.png",
@@ -124,6 +124,7 @@ class HomePage extends StatelessWidget {
                   )
                 ],
               ),
+
               const SizedBox(
                 height: 20,
               ),
