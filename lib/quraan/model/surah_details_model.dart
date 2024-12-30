@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:quraan_kareem/quraan/model/ayahs.model.dart';
-import 'package:quraan_kareem/quraan/model/edition_model.dart';
+import 'package:quraan_kareem/quraan/model/edition.dart';
 
 class SurahDetails extends Equatable {
   final int number;

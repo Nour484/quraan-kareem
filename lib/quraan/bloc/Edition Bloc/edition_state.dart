@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:quraan_kareem/quraan/model/edition_model.dart';
+import 'package:quraan_kareem/quraan/model/edition.dart';
 import '../../model/surah_model.dart';
 
 abstract class EditionState extends Equatable {
