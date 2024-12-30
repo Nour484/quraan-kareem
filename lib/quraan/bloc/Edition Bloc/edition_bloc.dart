@@ -5,7 +5,7 @@ import 'package:quraan_kareem/quraan/bloc/Edition%20Bloc/edition_state.dart';
 
 import 'dart:convert';
 
-import '../../model/edition_model.dart';
+import '../../model/edition.dart';
 
 class EditionBloc extends Bloc<EditionEvent, EditionState> {
   EditionBloc() : super(EditionInitial()) {
@@ -19,7 +19,7 @@ class EditionBloc extends Bloc<EditionEvent, EditionState> {
           'https://api.alquran.cloud/v1/edition/type/${event.editionType}'));
       if (response.statusCode == 200) {
         final List surahJson = json.decode(response.body)['data'];
-        final surahs = surahJson.map((json) => Edition.fromJson(json)).toList();
+        final surahs = surahJson.map((json) => Edition(json)).toList();
         emit(EditionLoaded(surahs));
       } else {
         emit(EditionError('Failed to load surahs'));

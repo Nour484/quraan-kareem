@@ -3,7 +3,7 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:quraan_kareem/quraan/model/artical.dart';
 
-part 'serializers.g.dart';
+part 'Serializers.g.dart';
 
 @SerializersFor([
   Edition,
