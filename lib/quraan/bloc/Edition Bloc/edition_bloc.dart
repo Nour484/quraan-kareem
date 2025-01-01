@@ -14,12 +14,14 @@ class EditionBloc extends Bloc<EditionEvent, EditionState> {
 
   void _onFetchEdition(FetchEdition event, Emitter<EditionState> emit) async {
     emit(EditionLoading());
+
     try {
       final response = await http.get(Uri.parse(
           'https://api.alquran.cloud/v1/edition/type/${event.editionType}'));
+
       if (response.statusCode == 200) {
         final List surahJson = json.decode(response.body)['data'];
-        final surahs = surahJson.map((json) => Edition(json)).toList();
+        final surahs = surahJson.map((json) => Edition.fromJson(json)).toList();
         emit(EditionLoaded(surahs));
       } else {
         emit(EditionError('Failed to load surahs'));

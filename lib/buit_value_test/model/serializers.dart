@@ -1,12 +1,10 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
-import 'package:quraan_kareem/quraan/model/artical.dart';
 
-part 'Serializers.g.dart';
+import 'quraan.dart';
 
-@SerializersFor([
-  Edition,
-])
+part 'serializers.g.dart';
+
+@SerializersFor([Surahs, Ayahs])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

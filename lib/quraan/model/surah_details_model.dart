@@ -36,7 +36,7 @@ class SurahDetails extends Equatable {
     var ayahsJson = json['ayahs'] as List;
     List<Ayah> ayahList = ayahsJson.map((i) => Ayah.fromJson(i)).toList();
     return SurahDetails(
-      edition: Edition(json['edition']),
+      edition: Edition.fromJson(json['edition']),
       ayahs: ayahList,
       number: json['number'],
       name: json['name'],
