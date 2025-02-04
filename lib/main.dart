@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quraan_kareem/quraan/ex.dart';
-import 'buit_value_test/view/surah_view.dart';
+
 import 'quraan/view/home_page.dart';
 
 void main() {
@@ -16,6 +15,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
         title: 'Quran App',
-        home: SurahListScreen());
+        home: HomePage());
   }
 }

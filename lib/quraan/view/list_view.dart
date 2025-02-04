@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quraan_kareem/quraan/bloc/Surah%20details%20bloc/surah_details_event.dart';
 import 'package:quraan_kareem/quraan/bloc/Surah%20list%20Bloc/surah_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Surah%20list%20Bloc/surahs_state.dart';
 import 'package:quraan_kareem/quraan/view/details_view.dart';
-import 'package:quraan_kareem/quraan/view/edition_page.dart';
 import 'package:quraan_kareem/quraan/view/translation_page.dart';
 
 class SurahListScreen extends StatelessWidget {
-  String editionType;
-  String typeInArabic;
-  SurahListScreen(
+  final String editionType;
+  final String typeInArabic;
+  const SurahListScreen(
       {required this.editionType, required this.typeInArabic, super.key});
 
   @override
@@ -19,7 +17,8 @@ class SurahListScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          """$editionType  - $typeInArabic""",
+          "Surahs - السور ",
+          //  """$editionType  - $typeInArabic""",
           style: const TextStyle(fontSize: 16),
         ),
       ),
@@ -40,7 +39,10 @@ class SurahListScreen extends StatelessWidget {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text("""${surah.englishName}  -  ${surah.name}"""),
+                          Text(
+                            """${surah.englishName}  -  ${surah.name}""",
+                            style: TextStyle(fontFamily: "Amiri Quran"),
+                          ),
                         ],
                       ),
                       // subtitle: Text(surah.englishName),
@@ -50,6 +52,7 @@ class SurahListScreen extends StatelessWidget {
                           MaterialPageRoute(
                               builder: (context) => editionType == "No"
                                   ? TransitonPage(
+                                      name: surah.name,
                                       surahId: surah.number,
                                     )
                                   : SurahDetailsScreen(

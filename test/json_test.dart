@@ -24,7 +24,7 @@ void main() {
     ]""";
 
     expect(
-      parseSurahs(jsonMap).first,
+      parseSurahs2(jsonMap),
       {
         "number": 1,
         "name": "سُورَةُ ٱلْفَاتِحَةِ",

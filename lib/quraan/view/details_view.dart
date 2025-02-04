@@ -66,10 +66,8 @@ class SurahDetailsScreen extends StatelessWidget {
                               Expanded(
                                 child: SingleChildScrollView(
                                   child: Center(
-                                    child: Container(
-                                      // width: MediaQuery.sizeOf(context).width,
-                                      // height: MediaQuery.sizeOf(context).height,
-                                      child: RichText(
+                                    child: ExpansionTile(
+                                      title: RichText(
                                         textAlign: TextAlign.justify,
                                         textDirection: TextDirection.rtl,
                                         // textAlign: TextAlign.right,
@@ -90,6 +88,13 @@ class SurahDetailsScreen extends StatelessWidget {
                                           }).toList(),
                                         ),
                                       ),
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text("data"),
+                                          ],
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),

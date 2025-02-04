@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Edition%20Bloc/edition_bloc.dart';
 import 'package:quraan_kareem/quraan/bloc/Edition%20Bloc/edition_state.dart';
-import 'package:quraan_kareem/quraan/view/details_view.dart';
 import 'package:quraan_kareem/quraan/view/list_page.dart';
 
 class EditionView extends StatelessWidget {
@@ -38,57 +36,64 @@ class EditionView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    ListTile(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            width: MediaQuery.sizeOf(context).width * 0.9,
-                            child: Text(
-                              textAlign: TextAlign.justify,
-                              textDirection: TextDirection.rtl,
-                              overflow: TextOverflow.ellipsis,
-                              edition.name,
-                              style: const TextStyle(
-                                fontSize: 17,
-                                fontFamily: 'Amiri Quran',
-                                color: Colors.black,
+                    ExpansionTile(
+                      title: ListTile(
+                        title: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: MediaQuery.sizeOf(context).width * 0.9,
+                              child: Text(
+                                textAlign: TextAlign.justify,
+                                textDirection: TextDirection.rtl,
+                                overflow: TextOverflow.ellipsis,
+                                edition.name,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontFamily: 'Amiri Quran',
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      // subtitle: Row(
-                      //   mainAxisAlignment: MainAxisAlignment.end,
-                      //   children: [
-                      //     Text(
-                      //       overflow: TextOverflow.ellipsis,
-                      //       //overflow: TextOverflow.clip,
-                      //       edition.englishName,
-                      //       style: const TextStyle(
-                      //         //overflow: TextOverflow.clip,
-                      //         //fontSize: 30,
-                      //         //fontFamily: 'Amiri Quran',
-                      //         color: Colors.black,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ListPage(
-                                  editionType: edition.identifier,
-                                  typeInArabic: "typeInArabic")
+                          ],
+                        ),
+                        // subtitle: Row(
+                        //   mainAxisAlignment: MainAxisAlignment.end,
+                        //   children: [
+                        //     Text(
+                        //       overflow: TextOverflow.ellipsis,
+                        //       //overflow: TextOverflow.clip,
+                        //       edition.englishName,
+                        //       style: const TextStyle(
+                        //         //overflow: TextOverflow.clip,
+                        //         //fontSize: 30,
+                        //         //fontFamily: 'Amiri Quran',
+                        //         color: Colors.black,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListPage(
+                                    editionType: edition.identifier,
+                                    typeInArabic: "typeInArabic")
 
-                              // SurahDetailsScreen(
-                              //   surahId: surhNumber,
-                              //   identifier: edition.identifier,
-                              // ),
-                              ),
-                        );
-                      },
+                                // SurahDetailsScreen(
+                                //   surahId: surhNumber,
+                                //   identifier: edition.identifier,
+                                // ),
+                                ),
+                          );
+                        },
+                      ),
+                      children: [
+                        Row(
+                          children: [Text("kjskhkshjkhkdjh")],
+                        )
+                      ],
                     ),
                     const Divider()
                   ],

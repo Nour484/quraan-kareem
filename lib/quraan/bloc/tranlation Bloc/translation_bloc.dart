@@ -16,7 +16,7 @@ class TranslationBloc extends Bloc<TranslationEvent, TranslationState> {
     try {
       final response = await http.get(Uri.parse(
           //  " https://api.alquran.cloud/v1/surah/${event.surahId}/editions/quran-uthmani,${event.identifier}"
-          'https://api.alquran.cloud/v1/surah/${event.surahId}/editions/${event.identifier},en.ahmedali,en.transliteration'));
+          'https://api.alquran.cloud/v1/surah/${event.surahId}/editions/${event.identifier},en.ahmedali,en.transliteration,ar.muyassar'));
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         List<dynamic> surahList = data['data'];
