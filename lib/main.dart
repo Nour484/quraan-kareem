@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'quraan/view/home_page.dart';
+
+   
 
 void main() {
   runApp(MyApp());

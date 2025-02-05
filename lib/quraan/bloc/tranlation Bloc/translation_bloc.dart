@@ -3,9 +3,15 @@ import 'package:http/http.dart' as http;
 import 'package:quraan_kareem/quraan/bloc/tranlation%20Bloc/translation_event.dart';
 import 'package:quraan_kareem/quraan/bloc/tranlation%20Bloc/translation_state.dart';
 import 'package:quraan_kareem/quraan/model/surah_details_model.dart';
-import 'dart:convert';
+import 'dart:convert'; 
+
+import 'package:mockito/mockito.dart';
+
 
 class TranslationBloc extends Bloc<TranslationEvent, TranslationState> {
+
+          
+
   TranslationBloc() : super(TranslationInitial()) {
     on<FetchSurahTranslation>(_onFetchSurahDetails);
   }
