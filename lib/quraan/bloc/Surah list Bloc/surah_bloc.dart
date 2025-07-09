@@ -6,16 +6,17 @@ import 'dart:convert';
 
 import 'package:quraan_kareem/quraan/model/surah_model.dart';
 
-
 class SurahListBloc extends Bloc<SurahListEvent, SurahListState> {
   SurahListBloc() : super(SurahListInitial()) {
     on<FetchSurahList>(_onFetchSurahList);
   }
 
-  void _onFetchSurahList(FetchSurahList event, Emitter<SurahListState> emit) async {
+  void _onFetchSurahList(
+      FetchSurahList event, Emitter<SurahListState> emit) async {
     emit(SurahListLoading());
     try {
-      final response = await http.get(Uri.parse('http://api.alquran.cloud/v1/surah'));
+      final response =
+          await http.get(Uri.parse('https://api.alquran.cloud/v1/surah'));
       if (response.statusCode == 200) {
         final List surahJson = json.decode(response.body)['data'];
         final surahs = surahJson.map((json) => Surah.fromJson(json)).toList();
