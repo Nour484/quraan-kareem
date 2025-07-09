@@ -9,26 +9,24 @@ import 'translaiton_view.dart';
 class TransitonPage extends StatelessWidget {
   int surahId;
   String name;
-  TransitonPage({required this.name, required this.surahId});
+  TransitonPage({super.key, required this.name, required this.surahId});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: BlocProvider(
-        create: (context) => TranslationBloc()
-          ..add(FetchSurahTranslation(surahId, "quran-uthmani")),
-        child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.amber.shade100,
-              title: Text(name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'Amiri Quran',
-                    color: Colors.black,
-                  )),
-              centerTitle: true,
-            ),
-            body: TranslationView()),
-      ),
+    return BlocProvider(
+      create: (context) => TranslationBloc()
+        ..add(FetchSurahTranslation(surahId, "quran-uthmani")),
+      child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.amber.shade100,
+            title: Text(name,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: 'Amiri Quran',
+                  color: Colors.black,
+                )),
+            centerTitle: true,
+          ),
+          body: TranslationView()),
     );
   }
 }
