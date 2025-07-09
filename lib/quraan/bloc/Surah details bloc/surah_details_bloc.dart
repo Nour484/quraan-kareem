@@ -16,7 +16,7 @@ class SurahDetailsBloc extends Bloc<SurahDetailsEvent, SurahDetailsState> {
     try {
       final response = await http.get(Uri.parse(
           //" https://api.alquran.cloud/v1/surah/${event.surahId}/editions/quran-uthmani,${event.identifier}"
-          'http://api.alquran.cloud/v1/surah/${event.surahId}/${event.identifier}'));
+          'https://api.alquran.cloud/v1/surah/${event.surahId}/${event.identifier}'));
       if (response.statusCode == 200) {
         final surahDetailsJson = json.decode(response.body)['data'];
         final surahDetails = SurahDetails.fromJson(surahDetailsJson);
